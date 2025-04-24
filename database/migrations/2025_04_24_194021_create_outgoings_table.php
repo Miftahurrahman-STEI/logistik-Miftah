@@ -11,16 +11,17 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('ingoing_items', function (Blueprint $table) {
+        Schema::create('outgoings', function (Blueprint $table) {
             $table->id();
             $table->string('namaItem');
             $table->string('kodeItem');
-            $table->string('priceItem');
-            $table->string('incomingStock');
-            $table->string('stockItem');
-            $table->date('dateInItems');
+            $table->integer('priceItem');
+            $table->integer('incomingStock');
+            $table->integer('stockItem');
+            $table->date('dateOutItems');
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
             $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->softDeletes();
             $table->timestamps();
         });
     }
@@ -30,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('ingoing_items');
+        Schema::dropIfExists('outgoings');
     }
 };

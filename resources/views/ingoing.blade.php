@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
-    <title>Dashboard</title>
+    <title>Ingoing Item</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 </head>
 <body>
@@ -13,22 +13,29 @@
             <div class="scroll-container flex w-full overflow-y-scroll hide-scrollbar">
                 <nav class="flex flex-col w-full h-fit p-[30px] gap-10 z-10">
                     <a href="">
-                        <asset src="{{ asset('build/assets/brand-paketinaja.png') }}" alt="logo">
+                        <assset src="{{ asset('build/assets/images/logos/logo.svg') }}" alt="logo">
                     </a>
                     <ul class="flex flex-col gap-4">
                         <p class="font-semibold text-xs leading-[18px] text-white">GENERAL</p>
                         <li>
                             <a href="{{ route('overview') }}" >
                                 <div class="flex items-center gap-3 w-full rounded-full border p-[14px_20px] transition-all duration-300 hover:bg-[#662FFF] hover:border-[#8661EE] hover:shadow-[-10px_-6px_10px_0_#7F33FF_inset] bg-[#070B24] border-[#24283E] shadow-[-10px_-6px_10px_0_#181A35_inset]">
-                                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-article text-white"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M7 8h10" /><path d="M7 12h10" /><path d="M7 16h10" /></svg>
+                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-article text-white"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M7 8h10" /><path d="M7 12h10" /><path d="M7 16h10" /></svg>
                                     <span class="font-semibold text-white">Overview</span>
                                 </div>
                             </a>
                         </li>
                         <li>
+                            @php
+                                $isIngoingActive = request()->routeIs('ingoings.*');
+                            @endphp
+
                             <a href="{{ route('ingoings.index') }}" >
-                                <div class="flex items-center gap-3 w-full rounded-full border p-[14px_20px] transition-all duration-300 hover:bg-[#662FFF] hover:border-[#8661EE] hover:shadow-[-10px_-6px_10px_0_#7F33FF_inset] bg-[#070B24] border-[#24283E] shadow-[-10px_-6px_10px_0_#181A35_inset]
-                                {{ request()->routeIs('ingoings.*') ? 'bg-[#662FFF] border-[#8661EE] shadow-[-10px_-6px_10px_0_#7F33FF_inset]' : 'bg-[#070B24] border-[#24283E] shadow-[-10px_-6px_10px_0_#181A35_inset]' }}
+                                <div class="flex items-center gap-3 w-full rounded-full border p-[14px_20px] transition-all duration-300
+                                
+                                {{ $isIngoingActive 
+                                    ? 'bg-[#662FFF] border-[#8661EE] shadow-[-10px_-6px_10px_0_#7F33FF_inset]'
+                                    : 'bg-[#070B24] border-[#24283E] shadow-[-10px_-6px_10px_0_#181A35_inset] hover:bg-[#662FFF] hover:border-[#8661EE] hover:shadow-[-10px_-6px_10px_0_#7F33FF_inset]' }} }}
                                 ">
                                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-indent-increase text-white"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 6l-11 0" /><path d="M20 12l-7 0" /><path d="M20 18l-11 0" /><path d="M4 8l4 4l-4 4" /></svg>
                                     <span class="font-semibold text-white">Ingoing Item</span>
@@ -82,9 +89,9 @@
                         <p class="text-sm leading-[21px] text-[rgb(131,140,157)]">
                             @if(auth()->check())
                                 @if(auth()->user()->hasRole('admin'))
-                                    Admin
+                                    admin
                                 @else
-                                    Visitor
+                                    visitor
                                 @endif
                             @endif
                         </p>
@@ -106,11 +113,73 @@
             </div>
             <header class="flex items-center justify-between gap-[30px]">
                 <div>
-                    <h1 class="font-extrabold text-[28px] leading-[42px]">Dashboard</h1>
+                    <h1 class="font-extrabold text-[28px] leading-[42px]">Ingoing Item</h1>
                     <p class="text-[#838C9D] mt-[1]">Keep your employee or user happy</p>
                 </div>
             </header>
-            
+
+            <div class="max-w-4xl mx-auto mt-10 p-6 bg-white rounded-2xl shadow-lg">
+                <h2 class="text-2xl font-bold mb-6 text-gray-800">Form Input Barang Masuk</h2>
+                <form action="{{ route('ingoings.store') }}" method="post">
+                    @csrf
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <div>
+                            <label for="namaItem" class="block text-sm font-medium text-gray-700">Nama Barang</label>
+                            <input type="text" name="namaItem" id="namaItem" class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                        </div>
+
+                        <div>
+                            <label for="kodeItem" class="block text-sm font-medium text-gray-700">Kode Barang</label>
+                            <input type="text" name="kodeItem" id="kodeItem" class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                        </div>
+
+                        <div>
+                            <label for="priceItem" class="block text-sm font-medium text-gray-700">Harga Barang</label>
+                            <input type="number" name="priceItem" id="priceItem" class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                        </div>
+
+                        <div>
+                            <label for="incomingStock" class="block text-sm font-medium text-gray-700">Jumlah Stok Masuk</label>
+                            <input type="number" name="incomingStock" id="incomingStock" class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                        </div>
+
+                        <div>
+                            <label for="stockItem" class="block text-sm font-medium text-gray-700">Stok Sekarang</label>
+                            <input type="number" name="stockItem" id="stockItem" class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                        </div>
+
+                        <div>
+                            <label for="dateInItems" class="block text-sm font-medium text-gray-700">Tanggal Masuk</label>
+                            <input type="date" name="dateInItems" id="dateInItems" class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                        </div>
+
+                        <div>
+                            <label for="category_id" class="block text-sm font-medium text-gray-700">Item</label>
+                            <select name="item_id" class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
+                                <option value="">-- Pilih Item --</option>
+                                @foreach ($items as $item)
+                                    <option value="{{ $item->id }}">{{ $item->namaItem }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+
+                        <div>
+                            <label for="category_id" class="block text-sm font-medium text-gray-700">Kategori</label>
+                            <select name="category_id" id="category_id" class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500">
+                                @foreach ($categories as $category)
+                                    <option value="{{ $category->id }}" class="text-black">{{ $category->name }}</option>
+                                @endforeach
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="mt-6 flex justify-end">
+                        <button type="submit" class="px-6 py-3 bg-indigo-600 text-white rounded-xl hover:bg-indigo-700 transition">Simpan Data</button>
+                    </div>
+                </form>
+            </div>
+
 
         </main>
     </div>

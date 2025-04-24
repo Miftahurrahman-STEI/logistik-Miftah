@@ -2,10 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\OutgoingItem;
+use App\Models\Outgoing;
 use Illuminate\Http\Request;
 
-class OutgoingItemController extends Controller
+class OutgoingController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -34,7 +34,7 @@ class OutgoingItemController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(OutgoingItem $outgoingItem)
+    public function show(Outgoing $outgoing)
     {
         //
     }
@@ -42,7 +42,7 @@ class OutgoingItemController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(OutgoingItem $outgoingItem)
+    public function edit(Outgoing $outgoing)
     {
         //
     }
@@ -50,7 +50,7 @@ class OutgoingItemController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, OutgoingItem $outgoingItem)
+    public function update(Request $request, Outgoing $outgoing)
     {
         //
     }
@@ -58,7 +58,7 @@ class OutgoingItemController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(OutgoingItem $outgoingItem)
+    public function destroy(Outgoing $outgoing)
     {
         //
     }
