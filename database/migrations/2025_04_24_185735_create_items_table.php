@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('name');
             $table->string('kode');
             $table->integer('stock');
-            $table->foreignId('category_id')->constrained()->onDelete('cascade');
+            $table->foreignId('category_id')->nullable()->constrained()->onDelete('cascade');
             $table->softDeletes();
             $table->timestamps();
         });

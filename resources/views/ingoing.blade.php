@@ -155,11 +155,10 @@
                         </div>
 
                         <div>
-                            <label for="category_id" class="block text-sm font-medium text-gray-700">Item</label>
+                            <label for="item_id" class="block text-sm font-medium text-gray-700">Item</label>
                             <select name="item_id" class="mt-1 block w-full rounded-xl border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500" required>
-                                <option value="">-- Pilih Item --</option>
                                 @foreach ($items as $item)
-                                    <option value="{{ $item->id }}">{{ $item->namaItem }}</option>
+                                    <option value="{{ $item->id }}">{{ $item->name }}</option>
                                 @endforeach
                             </select>
                         </div>

@@ -12,11 +12,29 @@ class IngoingController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
+        $query = Ingoing::query();
         $items = Item::all();
         $categories = Category::all();
         $ingoing = Ingoing::with(['item'])->get();
+
+         // Filter berdasarkan nama item
+        if ($request->has('namaItem') && $request->namaItem != '') {
+            $query->whereHas('item', function ($q) use ($request) {
+                $q->where('namaItem', 'like', '%' . $request->namaItem . '%');
+            });
+        }
+
+        // Filter berdasarkan kode item
+        if ($request->has('kodeItem') && $request->kodeItem != '') {
+            $query->where('kodeItem', 'like', '%' . $request->kodeItem . '%');
+        }
+
+        // Filter berdasarkan kategori
+        if ($request->has('category_id') && $request->category_id != '') {
+            $query->where('category_id', $request->category_id);
+        }
 
         return view('ingoing', compact('items','ingoing', 'categories'));
     }

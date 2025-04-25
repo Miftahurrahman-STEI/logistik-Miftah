@@ -125,10 +125,10 @@
                     </div>
                     <div>
                         <label class="block text-sm mb-1 font-semibold">Kategori</label>
-                        <select name="kategori" class="border rounded px-3 pr-8 py-2">
+                        <select name="category" class="border rounded px-3 pr-8 py-2">
                             <option value="">Semua</option>
                             @foreach(\App\Models\Category::all() as $category)
-                                <option value="{{ $category->id }}" {{ request('kategori') == $category->id ? 'selected' : '' }}>
+                                <option value="{{ $category->id }}" {{ request('category') == $category->id ? 'selected' : '' }}>
                                     {{ $category->name }}
                                 </option>
                             @endforeach
@@ -180,8 +180,8 @@
                         <tbody>
                             @foreach($ingoings as $in)
                                 <tr class="bg-white border-b">
-                                    <td class="px-6 py-4">{{ $in->item->namaItem ?? '-' }}</td>
-                                    <td class="px-6 py-4">{{ $in->item->kodeItem ?? '-' }}</td>
+                                    <td class="px-6 py-4">{{ $in->item->name ?? '-' }}</td>
+                                    <td class="px-6 py-4">{{ $in->item->kode ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $in->incomingStock }}</td>
                                     <td class="px-6 py-4">{{ $in->stockItem }}</td>
                                     <td class="px-6 py-4">{{ \Carbon\Carbon::parse($in->dateInItems)->format('d M Y') }}</td>

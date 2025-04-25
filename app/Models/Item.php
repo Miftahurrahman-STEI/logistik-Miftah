@@ -10,7 +10,10 @@ class Item extends Model
 {
     use HasFactory, SoftDeletes;
 
-    protected $guarded = [
-        'id',
+    protected $fillable = [
+        'name',
+        'kode',
+        'stock',
+        'category_id',
     ];
 }
