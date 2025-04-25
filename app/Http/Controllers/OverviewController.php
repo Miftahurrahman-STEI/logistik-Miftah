@@ -25,8 +25,10 @@ class OverviewController extends Controller
             $queryOut->where('category_id', request('kategori'));
         }
 
-        $ingoings = Ingoing::with('item')->latest()->get();    // semua data barang masuk
-        $outgoings = Outgoing::with('item')->latest()->get();  // semua data barang keluar
+       // Gunakan hasil query yang sudah difilter
+        $ingoings = $queryIn->latest()->get();
+        $outgoings = $queryOut->latest()->get();
+
     
         return view('overview', [
             'ingoings' => $ingoings,

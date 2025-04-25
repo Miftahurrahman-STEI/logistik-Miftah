@@ -164,7 +164,7 @@
                 <h2 class="text-xl font-bold mb-4">Barang Masuk</h2>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                        <thead class="text-xs text-black uppercase bg-gray-100">
                             <tr>
                                 <th class="px-6 py-3">Nama Barang</th>
                                 <th class="px-6 py-3">Kode</th>
@@ -176,10 +176,10 @@
                         </thead>
                         <tbody>
                             @foreach($ingoings as $in)
-                                <tr class="bg-white border-b">
+                                <tr class="bg-white border-b text-black">
                                     <td class="px-6 py-4">{{ $in->item->name ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $in->item->kode ?? '-' }}</td>
-                                    <td class="px-6 py-4">{{ $in->item->kategori ?? '-' }}</td>
+                                    <td class="px-6 py-4">{{ $in->item->category_id ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $in->incomingStock }}</td>
                                     <td class="px-6 py-4">{{ $in->stockItem }}</td>
                                     <td class="px-6 py-4">{{ \Carbon\Carbon::parse($in->dateInItems)->format('d M Y') }}</td>
@@ -195,7 +195,7 @@
                 <h2 class="text-xl font-bold mb-4">Barang Keluar</h2>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500">
-                        <thead class="text-xs text-gray-700 uppercase bg-gray-100">
+                        <thead class="text-xs text-black uppercase bg-gray-100">
                             <tr>
                                 <th class="px-6 py-3">Nama Barang</th>
                                 <th class="px-6 py-3">Kode</th>
@@ -207,7 +207,7 @@
                         </thead>
                         <tbody>
                             @foreach($outgoings as $out)
-                                <tr class="bg-white border-b">
+                                <tr class="bg-white border-b text-black">
                                     <td class="px-6 py-4">{{ $out->item->namaItem ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $out->item->kodeItem ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $in->item->kategori ?? '-' }}</td>

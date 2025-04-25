@@ -65,7 +65,7 @@ class IngoingController extends Controller
         $result = $ingoingItem->save();
 
         if($result) {
-            return "success add item";
+            return redirect()->route('ingoings.index')->with('success', 'Data barang masuk berhasil disimpan!');
         }else {
             return "failed add item";
         }
