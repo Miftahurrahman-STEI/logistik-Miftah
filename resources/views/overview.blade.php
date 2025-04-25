@@ -79,10 +79,7 @@
             <div id="TopBar" class="flex items-center justify-end gap-[30px]">
                 <div class="relative flex items-center justify-end gap-[14px]">
                     <div class="text-right">
-
-                    @if(auth()->check())
                         <p class="font-semibold">{{ Auth::user()->name }}</p>
-                    @else
                         <p class="text-sm leading-[21px] text-[#838C9D]">
                             @if(auth()->check())
                                 @if(auth()->user()->hasRole('admin'))
@@ -92,10 +89,9 @@
                                 @endif
                             @endif
                         </p>
-                    @endif
                     </div>
                     <button type="button" id="profileButton" class="flex shrink-0 w-[50px] h-[50px] rounded-full overflow-hidden">
-                        <img src="{{ asset('build/assets/images/photos/photo-1.png') }}" class="w-full h-full object-cover" alt="profile photos">
+                        <img src="https://i.pinimg.com/736x/fc/72/5a/fc725ab049ebb52617d857b642a871a0.jpg" class="w-full h-full object-cover" alt="profile photos">
                     </button>
                     <div id="ProfileDropdown" class="absolute top-full hidden">
                         <ul class="flex flex-col w-[200px] rounded-[20px] border border-[#CFDBEF] p-5 gap-4 bg-white mt-4">
@@ -143,9 +139,9 @@
                 </form>
 
                 <div class="flex items-center flex-wrap gap-2 mb-4 text-sm">
-                    @if(request('kategori'))
+                    @if(request('category'))
                         <span class="inline-flex items-center px-3 py-1 rounded-full bg-blue-100 text-blue-800">
-                            Kategori: {{ \App\Models\Category::find(request('kategori'))?->name ?? '-' }}
+                            Kategori: {{ \App\Models\Category::find(request('category'))?->name ?? '-' }}
                         </span>
                     @endif
                     @if(request('tanggal'))
@@ -172,6 +168,7 @@
                             <tr>
                                 <th class="px-6 py-3">Nama Barang</th>
                                 <th class="px-6 py-3">Kode</th>
+                                <th class="px-6 py-3">Kategori</th>
                                 <th class="px-6 py-3">Jumlah Masuk</th>
                                 <th class="px-6 py-3">Jumlah Sekarang</th>
                                 <th class="px-6 py-3">Tanggal</th>
@@ -182,6 +179,7 @@
                                 <tr class="bg-white border-b">
                                     <td class="px-6 py-4">{{ $in->item->name ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $in->item->kode ?? '-' }}</td>
+                                    <td class="px-6 py-4">{{ $in->item->kategori ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $in->incomingStock }}</td>
                                     <td class="px-6 py-4">{{ $in->stockItem }}</td>
                                     <td class="px-6 py-4">{{ \Carbon\Carbon::parse($in->dateInItems)->format('d M Y') }}</td>
@@ -201,6 +199,7 @@
                             <tr>
                                 <th class="px-6 py-3">Nama Barang</th>
                                 <th class="px-6 py-3">Kode</th>
+                                <th class="px-6 py-3">Kategori</th>
                                 <th class="px-6 py-3">Jumlah Keluar</th>
                                 <th class="px-6 py-3">Jumlah Sekarang</th>
                                 <th class="px-6 py-3">Tanggal</th>
@@ -211,6 +210,7 @@
                                 <tr class="bg-white border-b">
                                     <td class="px-6 py-4">{{ $out->item->namaItem ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $out->item->kodeItem ?? '-' }}</td>
+                                    <td class="px-6 py-4">{{ $in->item->kategori ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $out->outgoingStock }}</td>
                                     <td class="px-6 py-4">{{ $out->stockItem }}</td>
                                     <td class="px-6 py-4">{{ \Carbon\Carbon::parse($out->dateOutItems)->format('d M Y') }}</td>

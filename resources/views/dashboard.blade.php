@@ -28,7 +28,7 @@
                         <li>
                             <a href="{{ route('ingoings.index') }}" >
                                 <div class="flex items-center gap-3 w-full rounded-full border p-[14px_20px] transition-all duration-300 hover:bg-[#662FFF] hover:border-[#8661EE] hover:shadow-[-10px_-6px_10px_0_#7F33FF_inset] bg-[#070B24] border-[#24283E] shadow-[-10px_-6px_10px_0_#181A35_inset]
-                                {{ request()->routeIs('ingoings.*') ? 'bg-[#662FFF] border-[#8661EE] shadow-[-10px_-6px_10px_0_#7F33FF_inset]' : 'bg-[#070B24] border-[#24283E] shadow-[-10px_-6px_10px_0_#181A35_inset]' }}
+                                
                                 ">
                                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-indent-increase text-white"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 6l-11 0" /><path d="M20 12l-7 0" /><path d="M20 18l-11 0" /><path d="M4 8l4 4l-4 4" /></svg>
                                     <span class="font-semibold text-white">Ingoing Item</span>
@@ -111,6 +111,33 @@
                 </div>
             </header>
             
+            <div class="flex flex-col">
+                <div class="flex items-center justify-items-start gap-4">
+                    <div class="card w-[300px] h-[150px] bg-blue-300 rounded-2xl text-center">
+                        <div class="text-center mt-4">
+                            <h2 class="text-[20px] font-bold text-[#1E1E2F]">
+                                Total Barang Masuk
+                            </h2>
+                        </div>
+                        <p class="text-[40px] font-bold text-[#1E1E2F] mt-4">
+                            {{ $totalIngoing }}
+                        </p>
+                    </div>
+                    
+                    <div class="card w-[300px] h-[150px] bg-blue-300 rounded-2xl text-center">
+                        <div class="text-center mt-4">
+                            <h2 class="text-[20px] font-bold text-[#1E1E2F]">
+                                Total Barang Keluar
+                            </h2>
+                        </div>
+                        <p class="text-[40px] font-bold text-[#1E1E2F] mt-4">
+                            {{ $totalOutgoing }}
+                        </p>
+                    </div>
+                    
+                    
+                </div>
+            </div>
 
         </main>
     </div>

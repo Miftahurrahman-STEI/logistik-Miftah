@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('namaItem');
             $table->string('kodeItem');
             $table->integer('priceItem');
-            $table->integer('incomingStock');
+            $table->integer('outgoingStock');
             $table->integer('stockItem');
             $table->date('dateOutItems');
             $table->foreignId('item_id')->constrained()->onDelete('cascade');
