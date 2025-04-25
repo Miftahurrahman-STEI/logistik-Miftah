@@ -12,9 +12,9 @@
         <aside class="sidebar-container fixed h-[calc(100vh-20px)] w-full max-w-[280px] my-[10px] bg-[#060A23] overflow-hidden flex flex-1">
             <div class="scroll-container flex w-full overflow-y-scroll hide-scrollbar">
                 <nav class="flex flex-col w-full h-fit p-[30px] gap-10 z-10">
-                    <a href="">
-                        <assset src="{{ asset('build/assets/images/logos/logo.svg') }}" alt="logo">
-                    </a>
+                    <div class="w-[150px]">
+                        <img src="{{ asset('build/assets/brand-logistinc.png') }}" alt="logo">
+                    </div>
                     <ul class="flex flex-col gap-4">
                         <p class="font-semibold text-xs leading-[18px] text-white">GENERAL</p>
                         <li>

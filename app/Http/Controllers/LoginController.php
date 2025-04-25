@@ -43,12 +43,16 @@ class LoginController extends Controller
         $user = User::where('email', $request->email)->first();
 
         if (!$user) {
+            Alert::error('Error', 'Email not found');
             return redirect()->intended('login')->withError('Email tidak ditemukan.');
         }
         
         if (Auth::attempt($credentials)) {
+            alert()->success('Success','Login Berhasil!');
             return redirect()->intended('dashboard')->withSuccess('You have Successfully loggedin');
         }
+
+        Alert::error('Error', 'Password salah');
         return redirect("login")->withError('Opps! Email atau Password anda salah.');
     }
 
