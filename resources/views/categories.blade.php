@@ -89,7 +89,7 @@
                         </p>
                     </div>
                     <button type="button" id="profileButton" class="flex shrink-0 w-[50px] h-[50px] rounded-full overflow-hidden">
-                        <img src="{{ asset('build/assets/images/photos/photo-1.png') }}" class="w-full h-full object-cover" alt="profile photos">
+                    <img src="https://i.pinimg.com/736x/fc/72/5a/fc725ab049ebb52617d857b642a871a0.jpg" class="w-full h-full object-cover" alt="profile photos">
                     </button>
                     <div id="ProfileDropdown" class="absolute top-full hidden">
                         <ul class="flex flex-col w-[200px] rounded-[20px] border border-[#CFDBEF] p-5 gap-4 bg-white mt-4">
