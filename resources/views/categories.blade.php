@@ -116,18 +116,16 @@
                 </div>
             </header>
             <section id="CourseList" class="flex flex-col w-full rounded-[30px] p-[30px] gap-[30px] bg-[#F8FAFB]">
-                
-            @if(isset($users))
-                @foreach($users as $user)
-                    <div>
-                        <div>
-                            
+                @if(isset($categories) && $categories->count() > 0)
+                    @foreach($categories as $category)
+                        <div class="bg-white rounded-xl p-6 shadow-md">
+                            <p class="text-xl font-semibold text-gray-800">{{ $category->name }}</p>
+                            <p class="text-sm text-gray-500">ID: {{ $category->id }}</p>
                         </div>
-                    </div>
-                @endforeach
-            @else
-                <p>Tidak ada data pengguna.</p>
-            @endif
+                    @endforeach
+                @else
+                    <p class="text-gray-600">Tidak ada kategori tersedia.</p>
+                @endif
             
                 <div id="Pagination" class="flex items-center gap-3">
                     <button type="button" class="flex shrink-0 w-9 h-9 rounded-full items-center justify-center text-center transition-all duration-300 hover:bg-[#662FFF] hover:text-white hover:border-0 bg-[#662FFF] text-white">
