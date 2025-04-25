@@ -36,7 +36,7 @@
                             </a>
                         </li>
                         <li>
-                            <a href="#" >
+                            <a href="{{ route('outgoings.index') }}" >
                                 <div class="flex items-center gap-3 w-full rounded-full border p-[14px_20px] transition-all duration-300 hover:bg-[#662FFF] hover:border-[#8661EE] hover:shadow-[-10px_-6px_10px_0_#7F33FF_inset] bg-[#070B24] border-[#24283E] shadow-[-10px_-6px_10px_0_#181A35_inset]">
                                     <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-indent-decrease text-white"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M20 6l-7 0" /><path d="M20 12l-9 0" /><path d="M20 18l-7 0" /><path d="M8 8l-4 4l4 4" /></svg>
                                     <span class="font-semibold text-white">Outgoing Item</span>
@@ -108,7 +108,7 @@
             <header class="flex items-center justify-between gap-[30px]">
                 <div>
                     <h1 class="font-extrabold text-[28px] leading-[42px]">Overview</h1>
-                    <p class="text-[#838C9D] mt-[1]">List status</p>
+                    <p class="text-[#838C9D] mt-[1]">List status barang masuk & barang keluar</p>
                 </div>
             </header>
         
@@ -171,6 +171,7 @@
                                 <th class="px-6 py-3">Kategori</th>
                                 <th class="px-6 py-3">Jumlah Masuk</th>
                                 <th class="px-6 py-3">Jumlah Sekarang</th>
+                                <th class="px-6 py-3">Asal Barang</th>
                                 <th class="px-6 py-3">Tanggal</th>
                             </tr>
                         </thead>
@@ -182,6 +183,7 @@
                                     <td class="px-6 py-4">{{ $in->category_id ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $in->incomingStock }}</td>
                                     <td class="px-6 py-4">{{ $in->stockItem }}</td>
+                                    <td class="px-6 py-4">{{ $in->origin }}</td>
                                     <td class="px-6 py-4">{{ \Carbon\Carbon::parse($in->dateInItems)->format('d M Y') }}</td>
                                 </tr>
                             @endforeach
@@ -202,17 +204,19 @@
                                 <th class="px-6 py-3">Kategori</th>
                                 <th class="px-6 py-3">Jumlah Keluar</th>
                                 <th class="px-6 py-3">Jumlah Sekarang</th>
+                                <th class="px-6 py-3">Tujuan Barang</th>
                                 <th class="px-6 py-3">Tanggal</th>
                             </tr>
                         </thead>
                         <tbody>
                             @foreach($outgoings as $out)
                                 <tr class="bg-white border-b text-black">
-                                    <td class="px-6 py-4">{{ $out->item->namaItem ?? '-' }}</td>
-                                    <td class="px-6 py-4">{{ $out->item->kodeItem ?? '-' }}</td>
+                                    <td class="px-6 py-4">{{ $out->item->name ?? '-' }}</td>
+                                    <td class="px-6 py-4">{{ $out->item->kode ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $in->category_id ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $out->outgoingStock }}</td>
                                     <td class="px-6 py-4">{{ $out->stockItem }}</td>
+                                    <td class="px-6 py-4">{{ $out->destination }}</td>
                                     <td class="px-6 py-4">{{ \Carbon\Carbon::parse($out->dateOutItems)->format('d M Y') }}</td>
                                 </tr>
                             @endforeach

@@ -13,4 +13,12 @@ class Outgoing extends Model
     protected $guarded = [
         'id',
     ];
+
+    public function item(){
+        return $this->belongsTo(Item::class);
+    }
+
+    public function category(){
+        return $this->belongsTo(Category::class);
+    }
 }

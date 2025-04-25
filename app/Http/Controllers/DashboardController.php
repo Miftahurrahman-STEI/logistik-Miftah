@@ -10,12 +10,6 @@ use App\Models\Outgoing;
 class DashboardController extends Controller
 {
     public function index() {
-        $data = [
-            'jmlKategori' => Category::count(),
-            'jmlBarangMasuk' => Ingoing::count(),
-            'jmlBarangKeluar' => Outgoing::count(),
-        ];
-
         $incomingItems = Ingoing::with('item')->latest()->get();
         $outgoingItems = Outgoing::with('item')->latest()->get();
 
@@ -23,6 +17,6 @@ class DashboardController extends Controller
         $totalIngoing = Ingoing::sum('incomingStock');
         $totalOutgoing = Outgoing::sum('outgoingStock');
 
-        return view('dashboard', compact('incomingItems', 'outgoingItems', 'data', 'totalIngoing', 'totalOutgoing'));
+        return view('dashboard', compact('incomingItems', 'outgoingItems', 'totalIngoing', 'totalOutgoing'));
     }
 }

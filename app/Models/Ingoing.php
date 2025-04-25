@@ -14,13 +14,11 @@ class Ingoing extends Model
         'id',
     ];
 
-    public function item()
-    {
+    public function item(){
         return $this->belongsTo(Item::class);
     }
 
-    public function category()
-    {
+    public function category(){
         return $this->belongsTo(Category::class);
     }
 }

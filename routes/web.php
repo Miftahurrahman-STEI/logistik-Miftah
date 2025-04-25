@@ -13,6 +13,7 @@ use App\Http\Controllers\ForgotPasswordController;
 use App\Http\Controllers\AccountController;
 use App\Http\Controllers\VisitorController;
 use App\Http\Controllers\IngoingController;
+use App\Http\Controllers\OutgoingController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -77,8 +78,20 @@ Route::middleware('auth')->group(function () {
         Route::delete('/{id}', [IngoingController::class, 'destroy'])->name('ingoings.destroy');
 
         // Route::resource('ingoings', IngoingController::class);
-
     });
+
+    Route::prefix('outgoings')->group(function() {
+        Route::get('/', [OutgoingController::class, 'index'])->name('outgoings.index');
+        Route::get('/create', [OutgoingController::class, 'create'])->name('outgoings.create');
+        Route::post('/', [OutgoingController::class, 'store'])->name('outgoings.store');
+        Route::get('/{id}', [OutgoingController::class, 'show'])->name('outgoings.show');
+        Route::get('/{id}/edit', [OutgoingController::class, 'edit'])->name('outgoings.edit');
+        Route::put('/{id}', [OutgoingController::class, 'update'])->name('outgoings.update');
+        Route::delete('/{id}', [OutgoingController::class, 'destroy'])->name('outgoings.destroy');
+
+        // Route::resource('outgoings', OutgoingController::class);
+    });
+
 });
 
 require __DIR__.'/auth.php';

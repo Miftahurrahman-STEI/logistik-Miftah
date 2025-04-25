@@ -7,6 +7,8 @@ use Illuminate\Http\Request;
 use App\Models\Item;
 use App\Models\Category;
 
+use Illuminate\Http\RedirectResponse;
+
 class IngoingController extends Controller
 {
     /**
@@ -58,6 +60,7 @@ class IngoingController extends Controller
         $ingoingItem->priceItem = $request->input('priceItem');
         $ingoingItem->incomingStock = $request->input('incomingStock');
         $ingoingItem->stockItem = $request->input('stockItem');
+        $ingoingItem->origin = $request->input('origin');
         $ingoingItem->dateInItems = $request->input('dateInItems');
         $ingoingItem->category_id = $request->input('category_id');
         $ingoingItem->item_id = $request->input('item_id');
@@ -98,8 +101,8 @@ class IngoingController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Ingoing $ingoing)
+    public function destroy($id): RedirectResponse
     {
-        //
+        return  $item = Item::findOrFail($id);
     }
 }
