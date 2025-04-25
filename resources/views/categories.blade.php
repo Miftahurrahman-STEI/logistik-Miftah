@@ -106,7 +106,7 @@
             <header class="flex items-center justify-between gap-[30px]">
                 <div>
                     <h1 class="font-extrabold text-[28px] leading-[42px]">Categories Items</h1>
-                    <p class="text-[#838C9D] mt-[1]">Keep your employee or student happy</p>
+                    <p class="text-[#838C9D] mt-[1]">Daftar kategori barang</p>
                 </div>
             </header>
             <section id="CourseList" class="flex flex-col w-full rounded-[30px] p-[30px] gap-[30px] bg-[#F8FAFB]">

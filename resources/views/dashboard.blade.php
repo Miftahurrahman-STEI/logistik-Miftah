@@ -13,7 +13,7 @@
             <div class="scroll-container flex w-full overflow-y-scroll hide-scrollbar">
                 <nav class="flex flex-col w-full h-fit p-[30px] gap-10 z-10">
                     <a href="">
-                        <asset src="{{ asset('build/assets/brand-paketinaja.png') }}" alt="logo">
+                        <img src="{{ asset('build/assets/brand-logistinc.png') }}" alt="logo">
                     </a>
                     <ul class="flex flex-col gap-4">
                         <p class="font-semibold text-xs leading-[18px] text-white">GENERAL</p>
@@ -107,7 +107,7 @@
             <header class="flex items-center justify-between gap-[30px]">
                 <div>
                     <h1 class="font-extrabold text-[28px] leading-[42px]">Dashboard</h1>
-                    <p class="text-[#838C9D] mt-[1]">Keep your employee or user happy</p>
+                    <p class="text-[#838C9D] mt-[1]">Dashboard monitoring</p>
                 </div>
             </header>
             

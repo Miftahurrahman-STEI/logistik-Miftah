@@ -8,12 +8,12 @@
 </head>
 <body>
     <div class="relative flex flex-col flex-1 p-[10px]">
-        <div class="absolute w-[calc(100%-20px)] min-h-[calc(100vh-20px)] h-[calc(100%-20px)] bg-[#fff] -z-10 rounded-[20px]">
+        <div class="absolute w-[calc(100%-20px)] min-h-[calc(100vh-20px)] h-[calc(100%-20px)] bg-[#060A23] -z-10 rounded-[20px]">
             <img src="{{ asset('build/assets/images/icons/background-glow.png') }}" class="absolute bottom-0 transform -translate-x-1/2 left-1/2" alt="">
         </div>
         <nav class="flex items-center justify-between p-[30px]">
             <div class="flex items-center gap-[60px]">
-                <img src="{{  asset('build/assets/brand-paketinaja.png') }}" class="w-[full] h-[50px]" alt="brand">
+                <img src="{{  asset('build/assets/brand-logistinc.png') }}" class="w-[full] h-[50px]" alt="brand">
             </div>
             <div class="flex items-center gap-3">         
                 <a href="{{ route('register') }}" >
@@ -29,7 +29,7 @@
 
             <div>
                 <h1 class="font-bold text-[26px] leading-[39px] text-white">Welcome Back!</h1>
-                <p class="text-[#6B6C7F]">Manage your employees easily</p>
+                <p class="text-[#6B6C7F]">Manage your items easily</p>
             </div>
             <hr class="border-[#262A56]">
             <div class="flex items-center gap-3 w-full rounded-full border p-[14px_20px] transition-all duration-300 focus-within:border-[#8661EE] focus-within:shadow-[-10px_-6px_10px_0_#7F33FF_inset] bg-[#070B24] border-[#24283E] shadow-[-10px_-6px_10px_0_#181A35_inset]">
@@ -39,7 +39,7 @@
             </div>
             <div>
                 <div class="flex items-center gap-3 w-full rounded-full border p-[14px_20px] transition-all duration-300 focus-within:border-[#8661EE] focus-within:shadow-[-10px_-6px_10px_0_#7F33FF_inset] bg-[#070B24] border-[#24283E] shadow-[-10px_-6px_10px_0_#181A35_inset]">
-                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor"  class="icon icon-tabler icons-tabler-filled icon-tabler-lock text-white"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2a5 5 0 0 1 5 5v3a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-6a3 3 0 0 1 3 -3v-3a5 5 0 0 1 5 -5m0 12a2 2 0 0 0 -1.995 1.85l-.005 .15a2 2 0 1 0 2 -2m0 -10a3 3 0 0 0 -3 3v3h6v-3a3 3 0 0 0 -3 -3" /></svg>
+                    <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="currentColor" id="lockicon" class="icon icon-tabler icons-tabler-filled icon-tabler-lock text-white"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M12 2a5 5 0 0 1 5 5v3a3 3 0 0 1 3 3v6a3 3 0 0 1 -3 3h-10a3 3 0 0 1 -3 -3v-6a3 3 0 0 1 3 -3v-3a5 5 0 0 1 5 -5m0 12a2 2 0 0 0 -1.995 1.85l-.005 .15a2 2 0 1 0 2 -2m0 -10a3 3 0 0 0 -3 3v3h6v-3a3 3 0 0 0 -3 -3" /></svg>
                     <input type="password" name="password" id="password" autocomplete="off" class="border-none hover:border-none hover:outline-none form-control @error('password') is-invalid @enderror appearance-none outline-none !bg-transparent w-full font-semibold text-white placeholder:font-normal placeholder:text-[#6B6C7F]" placeholder="Type your secure password">
                     <!-- <label for="password" class="form-label">{{ __('Password') }}</label> -->
                 </div>
@@ -56,5 +56,22 @@
 
     @include('sweetalert::alert')
     @vite(['resources/js/app.js'])
+
+    <script>
+       const lockicon = document.getElementById("lockicon");
+       const password = document.getElementById("password");
+
+       lockicon.addEventListener('click', () => {
+            if(password.type === "password") {
+                password.type = "text";
+                lockicon.classList.remove("icon-tabler-lock");
+                lockicon.classList.add("icon-tabler-lock-open-2");
+            } else {
+                password.type = "password";
+                lockicon.classList.remove("icon-tabler-lock-open-2");
+                lockicon.classList.add("icon-tabler-lock");
+            }
+       });
+    </script>
 </body>
 </html>

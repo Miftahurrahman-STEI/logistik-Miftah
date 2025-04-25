@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     @vite('resources/css/app.css')
-    <title>Ingoing Item</title>
+    <title>Outgoing Item</title>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700;800;900&display=swap" rel="stylesheet" />
 </head>
 <body>
@@ -113,8 +113,8 @@
             </div>
             <header class="flex items-center justify-between gap-[30px]">
                 <div>
-                    <h1 class="font-extrabold text-[28px] leading-[42px]">Outgoing Item</h1>
-                    <p class="text-[#838C9D] mt-[1]">Keep your employee or user happy</p>
+                    <h1 class="font-extrabold text-[28px] leading-[42px]">Outgoing Items</h1>
+                    <p class="text-[#838C9D] mt-[1]">Daftar barang keluar</p>
                 </div>
             </header>
 

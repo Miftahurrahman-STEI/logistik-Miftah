@@ -113,8 +113,8 @@
             </div>
             <header class="flex items-center justify-between gap-[30px]">
                 <div>
-                    <h1 class="font-extrabold text-[28px] leading-[42px]">Ingoing Item</h1>
-                    <p class="text-[#838C9D] mt-[1]">Keep your employee or user happy</p>
+                    <h1 class="font-extrabold text-[28px] leading-[42px]">Ingoing Items</h1>
+                    <p class="text-[#838C9D] mt-[1]">Daftar barang masuk</p>
                 </div>
             </header>
 
