@@ -210,7 +210,7 @@
                                 <tr class="bg-white border-b text-black">
                                     <td class="px-6 py-4">{{ $out->item->namaItem ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $out->item->kodeItem ?? '-' }}</td>
-                                    <td class="px-6 py-4">{{ $in->item->kategori ?? '-' }}</td>
+                                    <td class="px-6 py-4">{{ $in->category_id ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $out->outgoingStock }}</td>
                                     <td class="px-6 py-4">{{ $out->stockItem }}</td>
                                     <td class="px-6 py-4">{{ \Carbon\Carbon::parse($out->dateOutItems)->format('d M Y') }}</td>
