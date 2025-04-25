@@ -179,7 +179,7 @@
                                 <tr class="bg-white border-b text-black">
                                     <td class="px-6 py-4">{{ $in->item->name ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $in->item->kode ?? '-' }}</td>
-                                    <td class="px-6 py-4">{{ $in->item->category_id ?? '-' }}</td>
+                                    <td class="px-6 py-4">{{ $in->category_id ?? '-' }}</td>
                                     <td class="px-6 py-4">{{ $in->incomingStock }}</td>
                                     <td class="px-6 py-4">{{ $in->stockItem }}</td>
                                     <td class="px-6 py-4">{{ \Carbon\Carbon::parse($in->dateInItems)->format('d M Y') }}</td>
