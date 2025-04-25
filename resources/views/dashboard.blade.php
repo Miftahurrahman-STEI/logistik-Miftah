@@ -113,27 +113,29 @@
             
             <div class="flex flex-col">
                 <div class="flex items-center justify-items-start gap-4">
-                    <div class="card w-[300px] h-[150px] bg-blue-300 rounded-2xl text-center">
-                        <div class="text-center mt-4">
-                            <h2 class="text-[20px] font-bold text-[#1E1E2F]">
-                                Total Barang Masuk
+                    <div class="card w-[300px] h-[150px] bg-primary rounded-2xl text-center">
+                        <div class="text-center mt-4 text-white">
+                            <h2 class="text-[18px] font-bold">
+                                TOTAL BARANG MASUK
                             </h2>
                         </div>
-                        <p class="text-[40px] font-bold text-[#1E1E2F] mt-4">
+                        <p class="text-[40px] font-bold mt-4 text-white">
                             {{ $totalIngoing }}
                         </p>
                     </div>
-                    
-                    <div class="card w-[300px] h-[150px] bg-blue-300 rounded-2xl text-center">
-                        <div class="text-center mt-4">
-                            <h2 class="text-[20px] font-bold text-[#1E1E2F]">
-                                Total Barang Keluar
+
+                    <div class="card w-[300px] h-[150px] bg-primary rounded-2xl text-center">
+                        <div class="text-center mt-4 text-white">
+                            <h2 class="text-[18px] font-bold">
+                                TOTAL BARANG KELUAR
                             </h2>
                         </div>
-                        <p class="text-[40px] font-bold text-[#1E1E2F] mt-4">
+                        <p class="text-[40px] font-bold mt-4 text-white">
                             {{ $totalOutgoing }}
                         </p>
                     </div>
+                    
+
                     
                     
                 </div>
