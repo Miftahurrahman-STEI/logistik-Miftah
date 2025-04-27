@@ -9,7 +9,7 @@
 </head>
 <body>
     <div class="flex min-h-screen">
-        <aside class="sidebar-container fixed h-[calc(100vh-20px)] w-full max-w-[280px] my-[10px] bg-[#060A23] overflow-hidden flex flex-1">
+        <aside class="z-50 sidebar-container fixed h-[calc(100vh-20px)] w-full max-w-[280px] my-[10px] bg-[#060A23] overflow-hidden flex flex-1">
             <div class="scroll-container flex w-full overflow-y-scroll hide-scrollbar">
                 <nav class="flex flex-col w-full h-fit p-[30px] gap-10 z-10">
                     <div class="w-[150px]">
@@ -119,6 +119,8 @@
                 </div>
             </header>
 
+        @if(auth()->check())
+            @if(auth()->user()->hasRole('admin'))
             <div x-data="{ showModal: false }" class="relative">
                 <button 
                     @click="showModal = true" 
@@ -196,7 +198,9 @@
                     </div>
                 </form>
             </div>
-        </div>
+            </div>
+            @endif
+        @endif
 
         <h2 class="text-xl font-bold mb-4 mt-4">Barang Keluar</h2>
                 <div class="overflow-x-auto">

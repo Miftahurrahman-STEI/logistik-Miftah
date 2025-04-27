@@ -117,86 +117,90 @@
                 </div>
             </header>
 
-            <div x-data="{ showModal: false }" class="relative">
-                <button 
-                    @click="showModal = true" 
-                    class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
-                >
-                    + Add Barang Masuk
-                </button>
-            <div 
-                x-show="showModal" 
-                class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
-            >
-            <div @click.outside="showModal = false" class="bg-white p-6 rounded-xl w-full max-w-lg shadow-lg">
-                <h2 class="text-xl font-bold mb-4">Tambah Barang Masuk</h2>
+        @if(auth()->check())
+            @if(auth()->user()->hasRole('admin'))
+                <div x-data="{ showModal: false }" class="relative">
+                    <button 
+                        @click="showModal = true" 
+                        class="px-4 py-2 bg-blue-600 text-white rounded-lg shadow hover:bg-blue-700"
+                    >
+                        + Add Barang Masuk
+                    </button>
+                <div 
+                        x-show="showModal" 
+                        class="fixed inset-0 bg-black bg-opacity-50 backdrop-blur-sm flex items-center justify-center z-50"
+                    >
+                        <div @click.outside="showModal = false" class="bg-white p-6 rounded-xl w-full max-w-lg shadow-lg">
+                        <h2 class="text-xl font-bold mb-4">Tambah Barang Masuk</h2>
 
-                <form method="POST" action="{{ route('ingoings.store') }}">
-                    @csrf
+                        <form method="POST" action="{{ route('ingoings.store') }}">
+                            @csrf
 
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700">Nama Barang</label>
-                        <input type="text" name="namaItem" required class="w-full border rounded p-2" />
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Nama Barang</label>
+                                <input type="text" name="namaItem" required class="w-full border rounded p-2" />
+                            </div>
+
+                            <div class="mb-4">
+                                <label class="block text-sm font-medium text-gray-700">Kode Barang</label>
+                                <input type="text" name="kodeItem" required class="w-full border rounded p-2" />
+                            </div>
+
+                            <div class="grid grid-cols-3 gap-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Harga</label>
+                                    <input type="number" name="priceItem" required class="w-full border rounded p-2" />
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Stok Masuk</label>
+                                    <input type="number" name="incomingStock" required class="w-full border rounded p-2" />
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Asal Barang</label>
+                                    <input type="string" name="origin" required class="w-full border rounded p-2" />
+                                </div>
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-4 mt-4">
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Total Stok</label>
+                                    <input type="number" name="stockItem" required class="w-full border rounded p-2" />
+                                </div>
+                                <div>
+                                    <label class="block text-sm font-medium text-gray-700">Tanggal Masuk</label>
+                                    <input type="date" name="dateInItems" required class="w-full border rounded p-2" />
+                                </div>
+                            </div>
+
+                            <div class="mt-4">
+                                <label for="category_id" class="block text-sm font-medium text-gray-700">Kategori</label>
+                                <select name="category_id" class="w-full border rounded p-2">
+                                    @foreach($categories as $category)
+                                        <option value="{{ $category->id }}">{{ $category->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mt-4">
+                                <label for="item_id" class="block text-sm font-medium text-gray-700">Item</label>
+                                <select name="item_id" class="w-full border rounded p-2">
+                                    @foreach($items as $item)
+                                        <option value="{{ $item->id }}">{{ $item->name }}</option>
+                                    @endforeach
+                                </select>
+                            </div>
+
+                            <div class="mt-6 flex justify-end gap-4">
+                                <button type="button" @click="showModal = false" class="px-4 py-2 rounded bg-red-600 hover:bg-red-700 text-white">Batal</button>
+                                <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">Simpan</button>
+                            </div>
+                        </form>
                     </div>
-
-                    <div class="mb-4">
-                        <label class="block text-sm font-medium text-gray-700">Kode Barang</label>
-                        <input type="text" name="kodeItem" required class="w-full border rounded p-2" />
-                    </div>
-
-                    <div class="grid grid-cols-3 gap-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Harga</label>
-                            <input type="number" name="priceItem" required class="w-full border rounded p-2" />
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Stok Masuk</label>
-                            <input type="number" name="incomingStock" required class="w-full border rounded p-2" />
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Asal Barang</label>
-                            <input type="string" name="origin" required class="w-full border rounded p-2" />
-                        </div>
-                    </div>
-
-                    <div class="grid grid-cols-2 gap-4 mt-4">
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Total Stok</label>
-                            <input type="number" name="stockItem" required class="w-full border rounded p-2" />
-                        </div>
-                        <div>
-                            <label class="block text-sm font-medium text-gray-700">Tanggal Masuk</label>
-                            <input type="date" name="dateInItems" required class="w-full border rounded p-2" />
-                        </div>
-                    </div>
-
-                    <div class="mt-4">
-                        <label for="category_id" class="block text-sm font-medium text-gray-700">Kategori</label>
-                        <select name="category_id" class="w-full border rounded p-2">
-                            @foreach($categories as $category)
-                                <option value="{{ $category->id }}">{{ $category->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mt-4">
-                        <label for="item_id" class="block text-sm font-medium text-gray-700">Item</label>
-                        <select name="item_id" class="w-full border rounded p-2">
-                            @foreach($items as $item)
-                                <option value="{{ $item->id }}">{{ $item->name }}</option>
-                            @endforeach
-                        </select>
-                    </div>
-
-                    <div class="mt-6 flex justify-end gap-4">
-                        <button type="button" @click="showModal = false" class="px-4 py-2 rounded bg-red-600 hover:bg-red-700 text-white">Batal</button>
-                        <button type="submit" class="px-4 py-2 rounded bg-blue-600 text-white hover:bg-blue-700">Simpan</button>
-                    </div>
-                </form>
-            </div>
-        </div>
-
-        <h2 class="text-xl font-bold mb-4 mt-4">Barang Masuk</h2>
+                </div>
+            @endif
+        @endif
+        
+                <h2 class="text-xl font-bold mb-4 mt-4">Barang Masuk</h2>
                 <div class="overflow-x-auto">
                     <table class="w-full text-sm text-left text-gray-500">
                         <thead class="text-xs text-black uppercase bg-gray-100">
@@ -225,8 +229,7 @@
                         </tbody>
                     </table>
                 </div>
-
-</div>
+            </div>
 
 
 
