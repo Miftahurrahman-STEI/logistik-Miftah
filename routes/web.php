@@ -16,16 +16,19 @@ use App\Http\Controllers\IngoingController;
 use App\Http\Controllers\OutgoingController;
 
 Route::get('/', function () {
-    return view('welcome');
+    return redirect()->route('login');
 });
 
-Route::get('/user/profile/{id}', [UserController::class, 'profile'])->name('user.profile');
+Route::middleware(['auth'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/admin/dashboard', function () {
+    return view('admin.dashboard');
+})->middleware('role:admin');
 
 Route::get('login', [LoginController::class, 'checkLogin'])->name('login');
 Route::post('post-login', [LoginController::class, 'postLogin'])->name('login.post'); 
 Route::get('logout', [LoginController::class, 'logout'])->name('logout');
 
-Route::middleware(['auth'])->get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
+Route::get('/user/profile/{id}', [UserController::class, 'profile'])->name('user.profile');
 
 Route::get('overview', [OverviewController::class, 'index'])->name('overview');
 
@@ -44,9 +47,6 @@ Route::middleware('auth')->group(function () {
 });
 
 Route::middleware('auth')->group(function () {
-    Route::get('/admin/dashboard', function () {
-        return view('admin.dashboard');
-    })->middleware('role:admin');
     
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
