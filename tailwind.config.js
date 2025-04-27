@@ -17,8 +17,8 @@ export default {
             colors: {
                 primary: '#211C84',
                 secondary: '#E8FFCE',
-                trendingUp: '#117554',
-                trendindDown: '#C5172E',
+                ingoingsColorBox: '#117554',
+                outgoingsColorBox: '#C5172E',
             }
         },
     },
