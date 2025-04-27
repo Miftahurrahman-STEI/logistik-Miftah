@@ -69,6 +69,10 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 - Email : miftah@admin.com
 - Password : 123123123
 
+## Login Account Visitor
+- Email : jamal@visitor.com
+- Password : 123123123
+
 ## Install Spatie
 (https://spatie.be/docs/laravel-permission/v6/installation-laravel)
 
