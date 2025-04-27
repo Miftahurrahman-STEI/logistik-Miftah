@@ -74,4 +74,7 @@ The Laravel framework is open-sourced software licensed under the [MIT license](
 ## Install SweetAlert
 (https://github.com/realrashid/sweet-alert)
 
+## Running TailwindCSS
+npm run dev
+
 
