@@ -65,6 +65,10 @@ If you discover a security vulnerability within Laravel, please send an e-mail t
 
 The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
 
+## Login Account Admin
+- Email : miftah@admin.com
+- Password : 123123123
+
 ## Install Spatie
 (https://spatie.be/docs/laravel-permission/v6/installation-laravel)
 
