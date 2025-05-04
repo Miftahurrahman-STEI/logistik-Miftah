@@ -48,7 +48,7 @@ class LoginController extends Controller
         }
         
         if (Auth::attempt($credentials)) {
-            alert()->success('Success','Login Berhasil!');
+            Alert::success('Success','Login Berhasil!');
             return redirect()->intended('dashboard')->withSuccess('You have Successfully loggedin');
         }
 

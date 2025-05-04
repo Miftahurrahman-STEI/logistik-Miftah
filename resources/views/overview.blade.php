@@ -115,7 +115,7 @@
         
             <!-- Barang Masuk -->
             <div class="mb-8">
-                <form method="GET" action="{{ route('overview') }}" class="flex flex-wrap gap-4 mb-6">
+                <form method="GET" action="{{ route('dashboard') }}" class="flex flex-wrap gap-4 mb-6">
                     <div>
                         <label class="block text-sm mb-1 font-semibold">Tanggal</label>
                         <input type="date" name="tanggal" value="{{ request('tanggal') }}" class="border rounded px-3 py-2">
@@ -190,6 +190,12 @@
                             @endforeach
                         </tbody>
                     </table>
+
+                    <<!-- Pagination -->
+                    <div class="mt-4">
+                        {{ $ingoings->links('ingoings.name') }}
+                    </div>
+
                 </div>
             </div>
 

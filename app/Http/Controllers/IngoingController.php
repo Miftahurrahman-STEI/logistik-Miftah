@@ -17,9 +17,6 @@ class IngoingController extends Controller
     public function index(Request $request)
     {
         $query = Ingoing::query();
-        $items = Item::all();
-        $categories = Category::all();
-        $ingoing = Ingoing::with(['item'])->get();
 
          // Filter berdasarkan nama item
         if ($request->has('namaItem') && $request->namaItem != '') {
@@ -38,7 +35,19 @@ class IngoingController extends Controller
             $query->where('category_id', $request->category_id);
         }
 
-        return view('ingoing', compact('items','ingoing', 'categories'));
+        // Ambil hasil akhir dengan relasi dan pagination
+        $ingoings = $query->with('item')->paginate(10);
+
+        // Get all items and categories for dropdowns (not paginated)
+        $items = Item::all();
+        $categories = Category::all();
+
+        // Pass everything to the view
+        return view('ingoing', [
+            'ingoings' => $ingoings,
+            'items' => $items,
+            'categories' => $categories
+        ]);
     }
 
     /**
