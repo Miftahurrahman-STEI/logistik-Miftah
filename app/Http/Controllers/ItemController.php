@@ -15,6 +15,14 @@ class ItemController extends Controller
         //
     }
 
+    public function search(Request $request) 
+    {
+        $search = $request->input('search');
+        $results = Item::where('name', 'like', "%$search%")->paginate(10);
+
+        return view('ingoing', ['results' => $results]);
+    }
+
     /**
      * Show the form for creating a new resource.
      */
