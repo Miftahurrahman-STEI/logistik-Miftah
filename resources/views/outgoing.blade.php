@@ -18,14 +18,6 @@
                     <ul class="flex flex-col gap-4">
                         <p class="font-semibold text-xs leading-[18px] text-white">GENERAL</p>
                         <li>
-                            <a href="{{ route('overview') }}" >
-                                <div class="flex items-center gap-3 w-full rounded-full border p-[14px_20px] transition-all duration-300 hover:bg-[#662FFF] hover:border-[#8661EE] hover:shadow-[-10px_-6px_10px_0_#7F33FF_inset] bg-[#070B24] border-[#24283E] shadow-[-10px_-6px_10px_0_#181A35_inset]">
-                                <svg  xmlns="http://www.w3.org/2000/svg"  width="24"  height="24"  viewBox="0 0 24 24"  fill="none"  stroke="currentColor"  stroke-width="2"  stroke-linecap="round"  stroke-linejoin="round"  class="icon icon-tabler icons-tabler-outline icon-tabler-article text-white"><path stroke="none" d="M0 0h24v24H0z" fill="none"/><path d="M3 4m0 2a2 2 0 0 1 2 -2h14a2 2 0 0 1 2 2v12a2 2 0 0 1 -2 2h-14a2 2 0 0 1 -2 -2z" /><path d="M7 8h10" /><path d="M7 12h10" /><path d="M7 16h10" /></svg>
-                                    <span class="font-semibold text-white">Overview</span>
-                                </div>
-                            </a>
-                        </li>
-                        <li>
                             <a href="{{ route('ingoings.index') }}" >
                                 <div class="flex items-center gap-3 w-full rounded-full border p-[14px_20px] transition-all duration-300
                                     {{ request()->routeIs('overview') ? 'bg-[#662FFF] border-[#8661EE] shadow-[-10px_-6px_10px_0_#7F33FF_inset]' : 'bg-[#070B24] border-[#24283E] shadow-[-10px_-6px_10px_0_#181A35_inset]' }}

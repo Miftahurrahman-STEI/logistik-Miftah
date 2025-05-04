@@ -153,7 +153,7 @@
             <div class="relative overflow-x-auto shadow-md sm:rounded-lg">
                 <div class="flex flex-column sm:flex-row flex-wrap space-y-4 sm:space-y-0 items-center justify-between pb-4">
                     <div>
-                        <button id="dropdownRadioButton" data-dropdown-toggle="dropdownRadio" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
+                        <button id="dropdownRadioButton" aria-expanded="true" aria-haspopup="true" data-dropdown-toggle="dropdownRadio" class="inline-flex items-center text-gray-500 bg-white border border-gray-300 focus:outline-none hover:bg-gray-100 focus:ring-4 focus:ring-gray-100 font-medium rounded-lg text-sm px-3 py-1.5 dark:bg-gray-800 dark:text-white dark:border-gray-600 dark:hover:bg-gray-700 dark:hover:border-gray-600 dark:focus:ring-gray-700" type="button">
                             <svg class="w-3 h-3 text-gray-500 dark:text-gray-400 me-3" aria-hidden="true" xmlns="http://www.w3.org/2000/svg" fill="currentColor" viewBox="0 0 20 20">
                                     <path d="M10 0a10 10 0 1 0 10 10A10.011 10.011 0 0 0 10 0Zm3.982 13.982a1 1 0 0 1-1.414 0l-3.274-3.274A1.012 1.012 0 0 1 9 10V6a1 1 0 0 1 2 0v3.586l2.982 2.982a1 1 0 0 1 0 1.414Z"/>
                                 </svg>
@@ -239,48 +239,62 @@
                 </div>
 
                 <div class="flex items-center justify-between border-t border-gray-200 bg-white px-4 py-3 sm:px-6">
-                    <div class="flex flex-1 justify-between sm:hidden">
-                        <a href="#" class="relative inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Previous</a>
-                        <a href="#" class="relative ml-3 inline-flex items-center rounded-md border border-gray-300 bg-white px-4 py-2 text-sm font-medium text-gray-700 hover:bg-gray-50">Next</a>
+                    <div class="flex-1 flex items-center justify-between sm:hidden">
+                        <a href="?page={{ isset($currentPage) ? max($currentPage - 1, 1) : 1 }}" class="px-4 py-2 text-sm text-gray-700 bg-white border rounded hover:bg-gray-100">
+                            Previous
+                        </a>
+                        <a href="?page={{ isset($currentPage) && isset($lastPage) ? min($currentPage + 1, $lastPage) : 2 }}" class="ml-3 px-4 py-2 text-sm text-gray-700 bg-white border rounded hover:bg-gray-100">
+                            Next
+                        </a>
                     </div>
+                    
                     <div class="hidden sm:flex sm:flex-1 sm:items-center sm:justify-between">
                         <div>
-                        <p class="text-sm text-gray-700">
-                            Showing
-                            <span class="font-medium">1</span>
-                            to
-                            <span class="font-medium">10</span>
-                            of
-                            <span class="font-medium">100</span>
-                            results
-                        </p>
+                            <p class="text-sm text-gray-700">
+                                Showing
+                                <span class="font-medium">{{ (isset($currentPage) ? $currentPage : 1 - 1) * (isset($perPage) ? $perPage : 10) + 1}}</span>
+                                to
+                                <span class="font-medium">{{ min((isset($currentPage) ? $currentPage : 1) * (isset($perPage) ? $perPage : 10), isset($total) ? $total : 0) }}</span>
+                                of
+                                <span class="font-medium">{{ isset($total) ? $total : 0 }}</span>
+                                results
+                            </p>
                         </div>
                         <div>
-                            <nav class="isolate inline-flex -space-x-px rounded-md shadow-xs" aria-label="Pagination">
-                                <a href="#" class="relative inline-flex items-center rounded-l-md px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                                <span class="sr-only">Previous</span>
-                                <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                                    <path fill-rule="evenodd" d="M11.78 5.22a.75.75 0 0 1 0 1.06L8.06 10l3.72 3.72a.75.75 0 1 1-1.06 1.06l-4.25-4.25a.75.75 0 0 1 0-1.06l4.25-4.25a.75.75 0 0 1 1.06 0Z" clip-rule="evenodd" />
-                                </svg>
+                            <nav class="inline-flex -space-x-px rounded-md shadow-sm" aria-label="Pagination">
+
+                                {{-- Tombol Previous --}}
+                                @php
+                                    $currentPage = isset($currentPage) ? $currentPage : 1;
+                                    $totalPages = isset($totalPages) ? $totalPages : 1;
+                                    $perPage = isset($perPage) ? $perPage : 10;
+                                    $total = isset($total) ? $total : 0;
+                                @endphp
+
+                                <a href="?page={{ max($currentPage - 1, 1) }}" class="px-3 py-2 text-sm {{ $currentPage == 1 ? 'text-gray-300 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-100' }} border rounded-l">
+                                    Previous
                                 </a>
-                                <!-- Current: "z-10 bg-indigo-600 text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600", Default: "text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:outline-offset-0" -->
-                                <a href="#" aria-current="page" class="relative z-10 inline-flex items-center bg-indigo-600 px-4 py-2 text-sm font-semibold text-white focus:z-20 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600">1</a>
-                                <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">2</a>
-                                <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">3</a>
-                                <span class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-700 ring-1 ring-gray-300 ring-inset focus:outline-offset-0">...</span>
-                                <a href="#" class="relative hidden items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0 md:inline-flex">8</a>
-                                <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">9</a>
-                                <a href="#" class="relative inline-flex items-center px-4 py-2 text-sm font-semibold text-gray-900 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">10</a>
-                                <a href="#" class="relative inline-flex items-center rounded-r-md px-2 py-2 text-gray-400 ring-1 ring-gray-300 ring-inset hover:bg-gray-50 focus:z-20 focus:outline-offset-0">
-                                <span class="sr-only">Next</span>
-                                <svg class="size-5" viewBox="0 0 20 20" fill="currentColor" aria-hidden="true" data-slot="icon">
-                                    <path fill-rule="evenodd" d="M8.22 5.22a.75.75 0 0 1 1.06 0l4.25 4.25a.75.75 0 0 1 0 1.06l-4.25 4.25a.75.75 0 0 1-1.06-1.06L11.94 10 8.22 6.28a.75.75 0 0 1 0-1.06Z" clip-rule="evenodd" />
-                                </svg>
+
+                                {{-- Nomor halaman --}}
+                                @for ($i = 1; $i <= $totalPages; $i++)
+                                    @if ($i == $currentPage)
+                                        <span class="px-3 py-2 text-sm text-white bg-indigo-600 border">{{ $i }}</span>
+                                    @elseif ($i == 1 || $i == $totalPages || ($i >= $currentPage - 1 && $i <= $currentPage + 1))
+                                        <a href="?page={{ $i }}" class="px-3 py-2 text-sm text-gray-700 border hover:bg-gray-100">{{ $i }}</a>
+                                    @elseif ($i == $currentPage - 2 || $i == $currentPage + 2)
+                                        <span class="px-3 py-2 text-sm text-gray-500">...</span>
+                                    @endif
+                                @endfor
+
+                                {{-- Tombol Next --}}
+                                <a href="?page={{ min($currentPage + 1, $totalPages) }}" class="px-3 py-2 text-sm {{ $currentPage == $totalPages ? 'text-gray-300 cursor-not-allowed' : 'text-gray-700 hover:bg-gray-100' }} border rounded-r">
+                                    Next
                                 </a>
                             </nav>
                         </div>
                     </div>
-                </div>
+</div>
+
 
             </main>
     </div>

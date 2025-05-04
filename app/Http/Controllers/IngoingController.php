@@ -35,19 +35,34 @@ class IngoingController extends Controller
             $query->where('category_id', $request->category_id);
         }
 
-        // Ambil hasil akhir dengan relasi dan pagination
-        $ingoings = $query->with('item')->paginate(10);
+        $perPage = 10;
+        $currentPage = $request->query('page', 1); // default halaman 1
+        $offset = ($currentPage - 1) * $perPage;
+
+        $total = $query->count(); // Dihitung dari query yang sudah difilter
+        $ingoing = $query->orderBy('created_at', 'desc')
+                    ->offset($offset)
+                    ->limit($perPage)
+                    ->get();
+
+        $totalPages = ceil($total / $perPage);
 
         // Get all items and categories for dropdowns (not paginated)
         $items = Item::all();
         $categories = Category::all();
 
         // Pass everything to the view
-        return view('ingoing', [
-            'ingoings' => $ingoings,
-            'items' => $items,
-            'categories' => $categories
-        ]);
+        return view('ingoing', compact(
+            'query', 
+            'ingoing', 
+            'currentPage', 
+            'perPage', 
+            'offset', 
+            'total', 
+            'totalPages',
+            'categories',
+            'items'
+        ));
     }
 
     /**
